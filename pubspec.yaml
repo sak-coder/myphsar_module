@@ -1,0 +1,119 @@
+name: myphsar
+description: "A new Flutter module project."
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 3.5.8
+
+environment:
+  sdk: '>=3.5.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  get: ^4.6.6
+
+  qr_flutter: ^4.1.0
+  camera: ^0.11.0
+  path: ^1.8.1
+  path_provider: ^2.0.11
+
+  shared_preferences: ^2.0.15
+  connectivity_plus: ^6.0.4
+  flutter_staggered_grid_view: ^0.7.0
+  carousel_slider: ^5.0.0
+  intl: ^0.19.0
+  flutter_rating_bar: ^4.0.1
+  scroll_navigation: ^1.3.2
+  shimmer: ^3.0.0
+  http: ^1.1.0
+  persistent_bottom_nav_bar_v2: ^5.3.0
+
+  flutter_html: ^3.0.0-alpha.6
+  flutter_flavor: ^3.1.3
+  share_plus: ^7.2.2
+  autoscale_tabbarview: ^1.0.0
+  image_picker: ^1.0.8
+  url_launcher: ^6.3.2
+
+  google_maps_flutter: ^2.1.3
+  # google_maps_flutter_web: ^0.3.2+1
+  flutter_linkify: ^6.0.0
+  country_code_picker: ^3.0.0
+  # flutter_facebook_auth: ^7.0.1
+
+  permission_handler: ^11.0.1
+  # flutter_compass: ^0.8.0
+#  firebase_remote_config: ^5.0.4
+ # firebase_core: ^4.0.0
+
+ # firebase_messaging: ^16.0.0
+  loading_animation_widget: ^1.3.0
+
+#  flutter_local_notifications: ^18.0.1
+  flutter_inappwebview: ^6.1.5
+
+  android_intent_plus: ^5.1.0
+  external_app_launcher: ^4.0.3
+  badges: ^3.1.1
+  image: ^4.0.15
+  pin_code_fields: ^8.0.1
+  photo_view: ^0.15.0
+  package_info_plus: ^8.0.1
+  app_tracking_transparency: ^2.0.4
+  extended_image: ^8.1.1
+  dynamic_height_grid_view: ^0.0.4
+  flutter_masonry_view: ^0.0.2
+  location_picker_flutter_map: ^3.1.0
+  geocoding: ^4.0.0
+  geolocator: ^13.0.4
+  order_tracker: ^0.0.2
+  #google_maps_flutter_ios: ^2.13.2
+  #open_street_map_search_and_pick: ^0.1.1
+  socket_io_client: ^3.0.0
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_launcher_icons: ^0.13.1
+  flutter_lints: ^4.0.0
+
+flutter:
+
+  uses-material-design: true
+
+
+  assets:
+    - assets/images/
+    # - assets/language/
+  #    - shorebird.yaml
+  fonts:
+    - family: KantumruyPro
+      fonts:
+        - asset: assets/fonts/khmer/KantumruyPro-ExtraLight.ttf
+        - asset: assets/fonts/khmer/KantumruyPro-Light.ttf
+        - asset: assets/fonts/khmer/KantumruyPro-Medium.ttf
+        - asset: assets/fonts/khmer/KantumruyPro-Regular.ttf
+        #        - asset: assets/fonts/khmer/KantumruyPro-SemiBold.ttf
+        - asset: assets/fonts/khmer/KantumruyPro-Thin.ttf
+
+    - family: OpenSans
+      fonts:
+
+        - asset: assets/fonts/open_san/OpenSans-Italic.ttf
+        - asset: assets/fonts/open_san/OpenSans-Light.ttf
+        - asset: assets/fonts/open_san/OpenSans-LightItalic.ttf
+        - asset: assets/fonts/open_san/OpenSans-Medium.ttf
+        - asset: assets/fonts/open_san/OpenSans-MediumItalic.ttf
+        - asset: assets/fonts/open_san/OpenSans-Regular.ttf
+
+  module:
+    androidX: true
+    androidPackage: com.myphsar.myphsar_module
+    iosBundleIdentifier: com.myphsar.myphsarModule
