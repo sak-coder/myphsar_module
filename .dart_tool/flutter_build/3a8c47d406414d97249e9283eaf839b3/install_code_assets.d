@@ -1,0 +1,1 @@
+ /Users/sak/myphsar_module/.dart_tool/flutter_build/3a8c47d406414d97249e9283eaf839b3/native_assets.json: 
