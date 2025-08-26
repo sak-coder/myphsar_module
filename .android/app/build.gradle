@@ -6,10 +6,11 @@ apply plugin: "maven-publish"
 android {
     namespace = "com.myphsar.myphsar_module.host"
     compileSdk = 35
-    ndkVersion = "27.0.12077973"
+    ndkVersion = " 29.0.13846066"
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     defaultConfig {
@@ -28,11 +29,9 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.debug
-            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             consumerProguardFiles 'proguard-rules.pro'
             consumerProguardFiles 'consumer-rules.pro'
-            proguardFiles 'proguard-android.txt', 'proguard-rules.pro'
-
         }
     }
 
@@ -48,11 +47,11 @@ dependencies {
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId = 'com.github.GIT_USER_NAME'
-            artifactId = 'REPO_NAME'
-            version = "VERSION"
+            groupId = 'com.github.sak-coder'
+            artifactId = 'sak-coder'
+            version = "1.0"
             pom {
-                description = 'DESCRIPTION'
+                description = 'sak-coder'
             }
         }
     }

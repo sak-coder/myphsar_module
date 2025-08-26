@@ -13,7 +13,6 @@ apply plugin: "kotlin-android"
 android {
     namespace = "com.myphsar.myphsar_module"
     compileSdk = 35
-    ndkVersion = "27.0.12077973"
     defaultConfig {
         minSdk = 21
         targetSdk = 35
