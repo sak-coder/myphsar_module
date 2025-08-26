@@ -1,49 +1,19 @@
 // Generated file. Do not edit.
-// android/build.gradle
-plugins {
-    id 'maven-publish'
-}
-
-
-apply plugin: "com.android.library"
-apply plugin: "kotlin-android"
-// Define your publication coordinates
-
-def GROUP_ID = 'com.myphsar.flutter'
-def ARTIFACT_ID = 'flutter-module'
-def VERSION = '1.0.0'
-
-// Custom task to publish the AAR
-publishing {
-    publications {
-        flutterAar(MavenPublication) {
-            groupId GROUP_ID
-            artifactId ARTIFACT_ID
-            version VERSION
-
-
-            // Or use this alternative path pattern:
-          //   artifact("/Users/sak/Documents/module/build/host/outputs/repo/com/myphsar/myphsar_module/flutter_release/1.0.aar")
-        }
-    }
-}
-
-
 
 allprojects {
     repositories {
         google()
         mavenCentral()
-        maven {
-            url 'https://jitpack.io'
-        }
     }
 }
 
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
 
 android {
     namespace = "com.myphsar.myphsar_module"
     compileSdk = 35
+    ndkVersion = "27.0.12077973"
     defaultConfig {
         minSdk = 21
         targetSdk = 35

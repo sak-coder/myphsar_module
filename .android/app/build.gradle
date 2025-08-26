@@ -1,0 +1,62 @@
+def flutterPluginVersion = "managed"
+
+apply plugin: "com.android.application"
+apply plugin: "maven-publish"
+
+android {
+    namespace = "com.myphsar.myphsar_module.host"
+    compileSdk = 35
+    ndkVersion = "27.0.12077973"
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    defaultConfig {
+        applicationId = "com.myphsar.myphsar_module.host"
+        minSdk = 21
+        targetSdk = 35
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    buildTypes {
+        profile {
+            initWith debug
+        }
+        release {
+            // TODO: Add your own signing config for the release build.
+            // Signing with the debug keys for now, so `flutter run --release` works.
+            signingConfig = signingConfigs.debug
+            minifyEnabled false
+            consumerProguardFiles 'proguard-rules.pro'
+            consumerProguardFiles 'consumer-rules.pro'
+            proguardFiles 'proguard-android.txt', 'proguard-rules.pro'
+
+        }
+    }
+
+}
+buildDir = new File(rootProject.projectDir, "../build/host")
+dependencies {
+    implementation(project(":flutter"))
+    implementation(fileTree(dir: "libs", include: ["*.jar"]))
+    implementation("androidx.appcompat:appcompat:1.0.2")
+    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
+}
+// 5. Publishing:
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.github.GIT_USER_NAME'
+            artifactId = 'REPO_NAME'
+            version = "VERSION"
+            pom {
+                description = 'DESCRIPTION'
+            }
+        }
+    }
+    repositories {               // << --- ADD This
+        mavenLocal()
+    }
+}
