@@ -1,8 +1,18 @@
 # configuration file for building snapshots and releases with jitpack.io
+#jdk:
+#  - openjdk17
+#before_install:
+#  - ./scripts/prepareJitpackEnvironment.sh
+#install:
+#  - FILE="-Dfile=android_generated-release.aar"
+#  - mvn install:install-file $FILE -DgroupId=com.github.sak-coder -DartifactId=myphsar_module -Dversion=1.0 -Dpackaging=aar -DgeneratePom=true
 jdk:
   - openjdk17
 before_install:
-  - ./scripts/prepareJitpackEnvironment.sh
+  - sdk install flutter
+  - sdk use flutter
+  - flutter pub get
+  - cd android
 install:
-  - FILE="-Dfile=android_generated-release.aar"
-  - mvn install:install-file $FILE -DgroupId=com.github.sak-coder -DartifactId=myphsar_module -Dversion=1.0 -Dpackaging=aar -DgeneratePom=true
+  - ./gradlew build
+  - ./gradlew publishToMavenLocal
