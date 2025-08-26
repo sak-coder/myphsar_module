@@ -3,6 +3,7 @@
 plugins {
     id "com.android.library"
     id "dev.flutter.flutter-gradle-plugin"
+
 }
 
 def localProperties = new Properties()
@@ -23,7 +24,7 @@ if (flutterVersionName == null) {
     flutterVersionName = "1.0"
 }
 
-group = "com.myphsar.myphsar_module"
+group = "sak-coder/myphsar_module"
 version = "1.0"
 
 android {
@@ -43,6 +44,37 @@ android {
     }
 }
 
+
+// Dynamic Flutter SDK path detection
+def getFlutterRoot() {
+    // First try environment variable
+    def flutterRoot = System.getenv('FLUTTER_HOME')
+    if (flutterRoot != null) {
+        println "Using Flutter SDK from FLUTTER_HOME: $flutterRoot"
+        return flutterRoot
+    }
+
+    // Then try local.properties (for local development)
+    def localProperties = new Properties()
+    def localPropertiesFile = rootProject.file('local.properties')
+    if (localPropertiesFile.exists()) {
+        localPropertiesFile.withReader('UTF-8') { reader ->
+            localProperties.load(reader)
+        }
+        flutterRoot = localProperties.getProperty('flutter.sdk')
+        if (flutterRoot != null) {
+            println "Using Flutter SDK from local.properties: $flutterRoot"
+            return flutterRoot
+        }
+    }
+
+    // For JitPack/CI, use downloaded Flutter
+    flutterRoot = "/tmp/flutter-${flutter_version}"
+    println "Using default Flutter SDK path: $flutterRoot"
+    return flutterRoot
+}
+
+def flutterRoot = getFlutterRoot()
 
 flutter {
     source = "../.."
