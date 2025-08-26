@@ -31,17 +31,14 @@ afterEvaluate {
                 version = '1.0.0'
 
                 // Add javadoc and sources
-                artifact androidJavadocJar
+          
                 artifact androidSourcesJar
             }
         }
     }
 }
 
-task androidJavadocJar(type: Jar, dependsOn: dokkaJavadoc) {
-    archiveClassifier.set('javadoc')
-    from dokkaJavadoc.outputDirectory
-}
+
 
 task androidSourcesJar(type: Jar) {
     archiveClassifier.set('sources')
