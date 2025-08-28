@@ -115,5 +115,6 @@ flutter:
 
   module:
     androidX: true
+    ios: true
     androidPackage: com.myphsar.myphsar_module
     iosBundleIdentifier: com.myphsar.myphsarModule
