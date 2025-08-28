@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.author           = { 'sak-coder' => 'sak@myphsar.com' }
   s.source           = { :git => 'https://github.com/sak-coder/myphsar_module.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '11.0'
+  s.ios.deployment_target = '15.0'
   s.static_framework = true
 
   # Flutter framework
