@@ -1,0 +1,92 @@
+Flutter crash report.
+Please report a bug at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter build ios-framework --output=/path/to/MyApp/Flutter/
+
+## exception
+
+FileSystemException: FileSystemException: Creation failed, path = '/path' (OS Error: Read-only file system, errno = 30)
+
+```
+#0      _Directory.createSync (dart:io/directory_impl.dart:146:7)
+#1      _Directory.createSync (dart:io/directory_impl.dart:141:16)
+#2      _Directory.createSync (dart:io/directory_impl.dart:141:16)
+#3      _Directory.createSync (dart:io/directory_impl.dart:141:16)
+#4      _Directory.createSync (dart:io/directory_impl.dart:141:16)
+#5      _Directory.createSync (dart:io/directory_impl.dart:141:16)
+#6      ForwardingDirectory.createSync (package:file/src/forwarding/forwarding_directory.dart:20:16)
+#7      ErrorHandlingDirectory.createSync.<anonymous closure> (package:flutter_tools/src/base/error_handling_io.dart:398:22)
+#8      _runSync (package:flutter_tools/src/base/error_handling_io.dart:549:14)
+#9      ErrorHandlingDirectory.createSync (package:flutter_tools/src/base/error_handling_io.dart:397:12)
+#10     copyDirectory (package:flutter_tools/src/base/file_system.dart:125:13)
+#11     BuildIOSFrameworkCommand._produceFlutterFramework (package:flutter_tools/src/commands/build_ios_framework.dart:473:7)
+#12     BuildIOSFrameworkCommand.runCommand (package:flutter_tools/src/commands/build_ios_framework.dart:290:15)
+<asynchronous suspension>
+#13     FlutterCommand.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command.dart:1563:27)
+<asynchronous suspension>
+#14     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+<asynchronous suspension>
+#15     CommandRunner.runCommand (package:args/command_runner.dart:212:13)
+<asynchronous suspension>
+#16     FlutterCommandRunner.runCommand.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:494:9)
+<asynchronous suspension>
+#17     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+<asynchronous suspension>
+#18     FlutterCommandRunner.runCommand (package:flutter_tools/src/runner/flutter_command_runner.dart:431:5)
+<asynchronous suspension>
+#19     run.<anonymous closure>.<anonymous closure> (package:flutter_tools/runner.dart:98:11)
+<asynchronous suspension>
+#20     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+<asynchronous suspension>
+#21     main (package:flutter_tools/executable.dart:102:3)
+<asynchronous suspension>
+```
+
+## flutter doctor
+
+```
+[32m[✓][39m Flutter (Channel stable, 3.32.4, on macOS 15.5 24F74 darwin-arm64, locale en-US) [133ms]
+    [32m•[39m Flutter version 3.32.4 on channel stable at /Users/sak/Documents/flutter
+    [32m•[39m Upstream repository https://github.com/flutter/flutter.git
+    [32m•[39m Framework revision 6fba2447e9 (3 months ago), 2025-06-12 19:03:56 -0700
+    [32m•[39m Engine revision 8cd19e509d
+    [32m•[39m Dart version 3.8.1
+    [32m•[39m DevTools version 2.45.1
+
+[32m[✓][39m Android toolchain - develop for Android devices (Android SDK version 36.1.0-rc1) [1,582ms]
+    [32m•[39m Android SDK at /Users/sak/Library/Android/sdk
+    [32m•[39m Platform android-36, build-tools 36.1.0-rc1
+    [32m•[39m Java binary at: /Applications/Android Studio.app/Contents/jbr/Contents/Home/bin/java
+      This is the JDK bundled with the latest Android Studio installation on this machine.
+      To manually set the JDK path, use: `flutter config --jdk-dir="path/to/jdk"`.
+    [32m•[39m Java version OpenJDK Runtime Environment (build 21.0.6+-13391695-b895.109)
+    [32m•[39m All Android licenses accepted.
+
+[32m[✓][39m Xcode - develop for iOS and macOS (Xcode 16.4) [1,108ms]
+    [32m•[39m Xcode at /Applications/Xcode.app/Contents/Developer
+    [32m•[39m Build 16F6
+    [32m•[39m CocoaPods version 1.16.2
+
+[32m[✓][39m Chrome - develop for the web [5ms]
+    [32m•[39m Chrome at /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+
+[32m[✓][39m Android Studio (version 2025.1) [5ms]
+    [32m•[39m Android Studio at /Applications/Android Studio.app/Contents
+    [32m•[39m Flutter plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/9212-flutter
+    [32m•[39m Dart plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/6351-dart
+    [32m•[39m Java version OpenJDK Runtime Environment (build 21.0.6+-13391695-b895.109)
+
+[32m[✓][39m Connected device (3 available) [5.5s]
+    [32m•[39m Lol (mobile)    • 00008101-001D098E260A001E • ios            • iOS 18.6.2 22G100
+    [32m•[39m macOS (desktop) • macos                     • darwin-arm64   • macOS 15.5 24F74 darwin-arm64
+    [32m•[39m Chrome (web)    • chrome                    • web-javascript • Google Chrome 139.0.7258.155
+
+[32m[✓][39m Network resources [351ms]
+    [32m•[39m All expected network resources are available.
+
+[32m•[39m No issues found!
+```

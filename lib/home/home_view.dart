@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:app_tracking_transparency/app_tracking_transparency.dart';
+//import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -72,23 +72,23 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
   @override
   void initState() {
     getData();
-    appTrackTransparency();
+    //appTrackTransparency();
 
     super.initState();
   }
 
-  appTrackTransparency() async {
-    if (Platform.isIOS) {
-      // Show tracking authorization dialog and ask for permission
-      // final status = await AppTrackingTransparency.requestTrackingAuthorization();
-      // If the system can show an authorization request dialog
-      if (await AppTrackingTransparency.trackingAuthorizationStatus == TrackingStatus.notDetermined) {
-        await Future.delayed(const Duration(milliseconds: 200));
-        // Request system's tracking authorization dialog
-        await AppTrackingTransparency.requestTrackingAuthorization();
-      }
-    }
-  }
+  // appTrackTransparency() async {
+  //   if (Platform.isIOS) {
+  //     // Show tracking authorization dialog and ask for permission
+  //     // final status = await AppTrackingTransparency.requestTrackingAuthorization();
+  //     // If the system can show an authorization request dialog
+  //     if (await AppTrackingTransparency.trackingAuthorizationStatus == TrackingStatus.notDetermined) {
+  //       await Future.delayed(const Duration(milliseconds: 200));
+  //       // Request system's tracking authorization dialog
+  //       await AppTrackingTransparency.requestTrackingAuthorization();
+  //     }
+  //   }
+  // }
 
   _launchUrl(String url) async {
     if (await canLaunchUrl(Uri.parse(url))) {
@@ -464,6 +464,85 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
                   // /*Top Seller Widget*/
                   // TopSellerWidget(),
                   //
+
+
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    height: 150.0,
+                    width: MediaQuery.of(context).size.width,
+                    child: Obx(() => Get.find<BannerViewController>()
+                        .getFooterBannerModel
+                        .bannerModelList !=
+                        null &&
+                        Get.find<BannerViewController>()
+                            .getFooterBannerModel
+                            .bannerModelList!
+                            .isNotEmpty
+                        ? CarouselSlider.builder(
+                      options: CarouselOptions(
+                        viewportFraction: 1.0,
+                        aspectRatio: 20 / 9,
+                        //    autoPlayCurve: Curves.fastOutSlowIn,
+                        autoPlayAnimationDuration:
+                        const Duration(seconds: 2),
+                        autoPlayInterval: const Duration(seconds: 7),
+                        autoPlay: Get.find<BannerViewController>()
+                            .getFooterBannerModel
+                            .bannerModelList!
+                            .length ==
+                            1
+                            ? false
+                            : true,
+                        // enlargeCenterPage: true,
+                        disableCenter: true,
+                        onPageChanged: (index, reason) {
+                          currentBannerIndex = index;
+                          // setState(() {
+                          //   currentBannerIndex = index;
+                          // });
+                        },
+                      ),
+                      itemCount: Get.find<BannerViewController>()
+                          .getFooterBannerModel
+                          .bannerModelList!
+                          .length,
+                      itemBuilder: (context, index, _) {
+                        return InkWell(
+                          onTap: () => {
+                            _launchUrl(Get.find<BannerViewController>()
+                                .getFooterBannerModel
+                                .bannerModelList![index]
+                                .url
+                                .toString())},
+                          //  width: MediaQuery.of(context).size.width,
+                          child: FadeInImage.assetNetwork(
+                            placeholder:
+                            "assets/images/placeholder_img.png",
+
+                            placeholderFit: BoxFit.fitHeight,
+                            fit: BoxFit.fill,
+                            image:
+                            '${Get.find<ConfigController>().configModel.baseUrls?.baseBannerImageUrl}'
+                                '/${Get.find<BannerViewController>().getFooterBannerModel.bannerModelList![index].photo}',
+                            imageErrorBuilder: (c, o, s) => Image.asset(
+                              "assets/images/placeholder_img.png",
+                              fit: BoxFit.fitHeight,
+                              width: 150,
+                            ),
+                          ),
+                        );
+                      },
+                    )
+                        : Center(
+                        child: Image.asset(
+                          "assets/images/placeholder_img.png",
+                          fit: BoxFit.fill,
+                          width: 150,
+                        ))),
+                  ),
                   // /*Recommend Product*/
                   const RecommendWidget(),
                   //

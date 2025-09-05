@@ -354,21 +354,21 @@ class _AddressViewState extends State<AddressView> {
                                     width: 1,
                                     height: 48,
                                   ),
-                                  customImageTextButton(
-                                    text: textView11(context: context, text: "Map", fontWeight: FontWeight.w500),
-                                    blur: 0,
-                                    radius: 1,
-                                    onTap: () {
-                                      Get.to(() => const PickMapView());
-                                    },
-                                    padding: 0,
-                                    height: 45,
-                                    width: 70,
-                                    icon: Image.asset(
-                                      "assets/images/pick_ic.png",
-                                      width: 18,
-                                    ),
-                                  ),
+                                  // customImageTextButton(
+                                  //   text: textView11(context: context, text: "Map", fontWeight: FontWeight.w500),
+                                  //   blur: 0,
+                                  //   radius: 1,
+                                  //   onTap: () {
+                                  //     Get.to(() => const PickMapView());
+                                  //   },
+                                  //   padding: 0,
+                                  //   height: 45,
+                                  //   width: 70,
+                                  //   icon: Image.asset(
+                                  //     "assets/images/pick_ic.png",
+                                  //     width: 18,
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),

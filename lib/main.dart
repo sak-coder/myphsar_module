@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:package_info_plus/package_info_plus.dart';
+
 import 'package:path/path.dart';
 
 import '../base_colors.dart';
@@ -20,11 +20,9 @@ import '../dashborad/dash_board_view.dart';
 import '../denpendency_injection.dart';
 import '../helper/share_pref_controller.dart';
 import '../qr/QRCoderGenerator.dart';
-import '../utils/connectivity_controller.dart';
 import '../welcome/welcome_view.dart';
 
 
-@pragma('vm:entry-point')
 Future<void> main() async {
 	WidgetsFlutterBinding.ensureInitialized();
 	// await Firebase.initializeApp(name: "MyPhar");
@@ -39,7 +37,7 @@ Future<void> main() async {
 
 	await DependencyBinding("https://myphsar.com").dependencies();
 	await Get.find<ConfigController>().getConfigModel();
-	Get.find<ConnectivityController>().onInit();
+
 	runApp(
 		const MyApp(),
 	);

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
+
 
 class Utils {
-  static Future<void> startLoading() async {
-    Get.dialog(Container(
-      color: Colors.transparent,
-      child: Center(child: LoadingAnimationWidget.waveDots(color: Colors.red, size: 50)),
-    ));
-  }
+  // static Future<void> startLoading() async {
+  //   Get.dialog(Container(
+  //     color: Colors.transparent,
+  //     child: Center(child: LoadingAnimationWidget.waveDots(color: Colors.red, size: 50)),
+  //   ));
+  // }
 
   static Future<void> stopLoading() async {
     Get.back();

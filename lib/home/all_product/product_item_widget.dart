@@ -60,7 +60,7 @@ class _ProductItemWidgetState extends State<ProductItemWidget> {
                 child: Image.network(
                   width: MediaQuery.of(context).size.width,
                   height: 180,
-                  fit: BoxFit.contain,
+                  fit: BoxFit.cover,
                   cacheHeight: 350,
                   '${Get.find<ConfigController>().configModel.baseUrls?.baseProductThumbnailUrl}/${widget.product.thumbnail!}',
                   errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {

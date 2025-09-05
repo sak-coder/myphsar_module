@@ -50,19 +50,15 @@ class _DashBoardViewState extends State<DashBoardView> {
   void initState() {
     // setupRemoteConfig();
     initData();
+   // _pageController.addListener(() {
+      // if (pageIndex == 2 || pageIndex == 3) {
+      //   if (Get.find<AuthController>().isSignIn()) {
+      //     _pageController.jumpToPreviousTab();
+      //     signInDialogView(context);
+      //   }
+      // }
+   // });
 
-    _pageController.addListener(() {
-      if (pageIndex != 0 && pageIndex != 1 && pageIndex != 4) {
-        if (!Get.find<AuthController>().isSignIn()) {
-          _pageController.jumpToPreviousTab();
-          signInDialogView(context);
-        }
-      }
-    });
-
-    // if (widget.routeId == "1") {
-    //   notificationDetail();
-    // }
     super.initState();
   }
 
@@ -117,12 +113,12 @@ class _DashBoardViewState extends State<DashBoardView> {
         });
   }
 
-  void notificationDetail() {
-    setState(() {
-      pageIndex = 3;
-    });
-    _pageController.jumpToTab(3);
-  }
+  // void notificationDetail() {
+  //   setState(() {
+  //     pageIndex = 3;
+  //   });
+  //   _pageController.jumpToTab(3);
+  // }
 
   Future<void> getData() async {
     await Get.find<OrderHistoryViewController>()
@@ -293,17 +289,35 @@ class _DashBoardViewState extends State<DashBoardView> {
   Widget build(BuildContext context) {
     return PersistentTabView(
       tabs: _tabs(),
+      selectedTabPressConfig: SelectedTabPressConfig(
+        onPressed: (tab) {
+            if (pageIndex != 0)
+              {
+                setState(() {
+                  pageIndex = 0;
+                });
+                _pageController.jumpToTab(0);
+              }
+            else
+              {Get.find<DashBoardController>().listener.add(true);}
+        },
+      ),
       resizeToAvoidBottomInset: true,
       onTabChanged: (index) {
         setState(() {
           pageIndex = index;
+          if(pageIndex ==2 || pageIndex ==3)
+          if (!Get.find<AuthController>().isSignIn()) {
+            _pageController.jumpToPreviousTab();
+            signInDialogView(context);
+          }
         });
       },
       screenTransitionAnimation: const ScreenTransitionAnimation(
         curve: Curves.ease,
         duration: Duration(milliseconds: 500),
       ),
-      popAllScreensOnTapAnyTabs: false,
+      keepNavigatorHistory: true,
       backgroundColor: Colors.white,
       controller: _pageController,
       navBarBuilder: (navBarConfig) => Style4BottomNavBar(
@@ -316,7 +330,7 @@ class _DashBoardViewState extends State<DashBoardView> {
               bottomRight: Radius.circular(0)),
           boxShadow: <BoxShadow>[
             BoxShadow(
-                color: Colors.black.withOpacity(0.2),
+                color: Colors.black12,
                 blurRadius: 4,
                 offset: const Offset(0, 0)),
           ],
@@ -340,34 +354,24 @@ class _DashBoardViewState extends State<DashBoardView> {
           ),
           item: ItemConfig(
               icon: Image.asset(
-                "assets/images/home_ic.png",
-                fit: BoxFit.contain,
-                height: 24,
-                width: 24,
-                color: ColorResource.primaryColor,
-              ),
+                  "assets/images/home_ic_select.png",
+                  fit: BoxFit.fitHeight,
+                  height: 30,
+                  width: 30,
+                ),
+
               inactiveIcon: Image.asset(
-                fit: BoxFit.contain,
-                height: 24,
-                width: 24,
-                "assets/images/home_ic.png",
-                color: ColorResource.lightShadowColor,
+                  fit: BoxFit.fitHeight,
+                  height: 30,
+                  width: 30,
+                  "assets/images/home_ic.png",
               ),
               title: ('home'.tr),
               activeForegroundColor: ColorResource.primaryColor,
-              inactiveForegroundColor: ColorResource.lightTextColor,
-              textStyle: getTextWeight(0)),
-          onSelectedTabPressWhenNoScreensPushed: () => {
-            if (pageIndex != 0)
-              {
-                setState(() {
-                  pageIndex = 0;
-                }),
-                _pageController.jumpToTab(0)
-              }
-            else
-              {Get.find<DashBoardController>().listener.add(true)}
-          },
+              inactiveForegroundColor: Colors.black87,
+              textStyle: getTextWeight(0)
+
+          ),
         ),
         PersistentTabConfig(
           screen: CategoryView(
@@ -375,102 +379,86 @@ class _DashBoardViewState extends State<DashBoardView> {
             isSearchingMode: false,
           ),
           item: ItemConfig(
-              icon: Padding(
-                padding: const EdgeInsets.only(top: 3),
-                child: Image.asset(
-                  "assets/images/category_ic.png",
-                  fit: BoxFit.contain,
-                  height: 23,
-                  width: 23,
-                  color: ColorResource.primaryColor,
+              icon: Image.asset(
+                  "assets/images/category_ic_select.png",
+                  fit: BoxFit.fitHeight,
+                  height: 30,
+                  width: 30,
                 ),
-              ),
-              inactiveIcon: Padding(
-                padding: const EdgeInsets.only(top: 3),
-                child: Image.asset(
-                  fit: BoxFit.contain,
-                  height: 23,
-                  width: 23,
+              inactiveIcon:  Image.asset(
+                  fit: BoxFit.fitHeight,
+                  height:30,
+                  width: 30,
                   "assets/images/category_ic.png",
-                  color: ColorResource.lightShadowColor,
                 ),
-              ),
+
               title: ('category'.tr),
               activeForegroundColor: ColorResource.primaryColor,
-              inactiveForegroundColor: ColorResource.lightTextColor,
+              inactiveForegroundColor: Colors.black87,
               textStyle: getTextWeight(1)),
         ),
         PersistentTabConfig(
           screen: const OrderHistoryView(),
           item: ItemConfig(
-              icon: Obx(() => Padding(
-                    padding: const EdgeInsets.only(top: 4),
-                    child: badgeIcon(
+              icon: Obx(() => badgeIcon(
                         visibleBadge:
                             Get.find<ChatController>().getUnRedChatCount > 0,
-                        topP: -5,
-                        endP: -10,
+                        topP: -3,
+                        endP: -5,
                         context: context,
                         badgeText: Get.find<ChatController>()
                             .getUnRedChatCount
                             .toString(),
-                        imageIcon: Image.asset("assets/images/order_ic.png",
-                            fit: BoxFit.contain,
-                            height: 26,
-                            width: 27,
-                            color: ColorResource.primaryColor)),
-                  )),
+                        imageIcon: Image.asset("assets/images/order_ic_select.png",
+                            fit: BoxFit.fitHeight,
+                            height: 30,
+                            width: 30,
+                         )),
+                  ),
               title: ('order'.tr),
-              inactiveIcon: Obx(() => Padding(
-                    padding: const EdgeInsets.only(top: 4),
-                    child: badgeIcon(
+              inactiveIcon: Obx(() =>  badgeIcon(
                         visibleBadge: Get.find<DashBoardController>()
                                 .getPendingOrderCount >
                             0,
-                        topP: -5,
-                        endP: -10,
+                        topP: -3,
+                        endP: -5,
                         context: context,
                         badgeText: Get.find<DashBoardController>()
                             .getPendingOrderCount
                             .toString(),
                         imageIcon: Image.asset("assets/images/order_ic.png",
-                            height: 26,
-                            width: 27,
-                            fit: BoxFit.contain,
-                            color: ColorResource.lightShadowColor)),
-                  )),
+                            fit: BoxFit.fitHeight,
+                            height: 30,
+                            width: 30 )),
+               ),
               activeForegroundColor: ColorResource.primaryColor,
-              inactiveForegroundColor: ColorResource.lightTextColor,
+              inactiveForegroundColor: Colors.black87,
               textStyle: getTextWeight(2)),
         ),
         PersistentTabConfig(
           screen: const NotificationView(),
           item: ItemConfig(
-              icon: Obx(() => Padding(
-                    padding: const EdgeInsets.only(top: 3),
-                    child: badgeIcon(
+              icon: Obx(() =>   badgeIcon(
                         visibleBadge:
                             Get.find<ChatController>().getUnRedChatCount > 0,
-                        topP: -5,
+                        topP: -3,
                         endP: -5,
                         context: context,
                         badgeText: Get.find<ChatController>()
                             .getUnRedChatCount
                             .toString(),
                         imageIcon: Image.asset(
-                            "assets/images/notification_ic.png",
-                            fit: BoxFit.contain,
-                            height: 34,
-                            width: 23,
-                            color: ColorResource.primaryColor)),
-                  )),
+                            "assets/images/notification_ic_select.png",
+                            fit: BoxFit.fitHeight,
+                            height: 30,
+                            width: 30,
+                          )),
+               ),
               title: ('notification'.tr),
-              inactiveIcon: Obx(() => Padding(
-                    padding: const EdgeInsets.only(top: 3),
-                    child: badgeIcon(
+              inactiveIcon: Obx(() =>  badgeIcon(
                         visibleBadge:
                             Get.find<ChatController>().getUnRedChatCount > 0,
-                        topP: -5,
+                        topP: -3,
                         endP: -5,
                         context: context,
                         badgeText: Get.find<ChatController>()
@@ -478,39 +466,33 @@ class _DashBoardViewState extends State<DashBoardView> {
                             .toString(),
                         imageIcon: Image.asset(
                             "assets/images/notification_ic.png",
-                            fit: BoxFit.contain,
-                            height: 34,
-                            width: 23,
-                            color: ColorResource.lightShadowColor)),
-                  )),
+                            fit: BoxFit.fitHeight,
+                            height: 30,
+                            width: 30,
+                         )),
+                 ),
               activeForegroundColor: ColorResource.primaryColor,
-              inactiveForegroundColor: ColorResource.lightTextColor,
+              inactiveForegroundColor: Colors.black87,
               textStyle: getTextWeight(3)),
         ),
         PersistentTabConfig(
           screen: AccountView(globalContext: context),
           item: ItemConfig(
-              icon: Padding(
-                padding: const EdgeInsets.only(top: 2),
-                child: Image.asset("assets/images/account.png",
-                    fit: BoxFit.contain,
-                    height: 19,
-                    width: 19,
-                    color: ColorResource.primaryColor),
-              ),
+              icon: Image.asset("assets/images/account_ic_select.png",
+                    fit: BoxFit.fitHeight,
+                    height: 30,
+                    width: 30,),
+
               title: ("account".tr),
-              inactiveIcon: Padding(
-                padding: const EdgeInsets.only(top: 2),
-                child: Image.asset(
-                  fit: BoxFit.contain,
-                  "assets/images/account.png",
-                  color: ColorResource.lightShadowColor,
-                  height: 19,
-                  width: 19,
+              inactiveIcon:   Image.asset(
+                  fit: BoxFit.fitHeight,
+                  "assets/images/account_ic.png",
+                  height: 30,
+                  width: 30,
                 ),
-              ),
+
               activeForegroundColor: ColorResource.primaryColor,
-              inactiveForegroundColor: ColorResource.lightTextColor,
+              inactiveForegroundColor: Colors.black87,
               textStyle: getTextWeight(4)),
         ),
       ];

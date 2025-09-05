@@ -26,20 +26,13 @@ class CustomScaffoldRefreshIndicator extends StatelessWidget {
       color: Colors.white,
       child: SafeArea(
         top: topSafeArea,
-        child: Stack(
-          children: [
-            Scaffold(
+            child: Scaffold(
               resizeToAvoidBottomInset: false,
               appBar: appBar,
               backgroundColor: color,
               body: RefreshIndicator(key: refreshIndicatorKey, onRefresh: onRefresh, child: body),
               bottomNavigationBar: bottomNavigationBar,
             ),
-            Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(margin: const EdgeInsets.only(bottom: 5), child: noInternetAlertWidget(context))),
-          ],
-        ),
       ),
     );
   }

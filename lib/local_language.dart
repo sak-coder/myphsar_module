@@ -339,7 +339,8 @@ class LocalLanguage extends Translations {
           'order_completed': 'Order Completed',
           'my_order':'My Order',
   'support_text':'Have any questions? Reach directly to our ',
-          'order_fail':'Order Failed'
+          'order_fail':'Order Failed',
+          'personal_detail':' Personal Details',
 
         },
         'kh_KM': {
@@ -678,7 +679,8 @@ class LocalLanguage extends Translations {
           'order_completed': 'ការបញ្ជាទិញបានបញ្ចប់',
           'my_order':'ការបញ្ជាទិញរបស់ខ្ញុំ',
           'support_text':'មានសំណួរ? ទំនាក់ទំនងមកកាន់យើងខ្ញុំដោយផ្ទាល់ ',
-          'order_fail':'ការបញ្ជាទិញបរាជ័យ'
+          'order_fail':'ការបញ្ជាទិញបរាជ័យ',
+          'personal_detail':'ព័ត៌មានផ្ទាល់ខ្លួន',
 
         }
       };

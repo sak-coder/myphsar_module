@@ -52,6 +52,36 @@ Widget topSellerShimmerView(BuildContext context, {required Axis axis, double he
         ),
       ),
     );
+Widget serviceShimmerView(BuildContext context) {
+  return Shimmer.fromColors(
+    period: const Duration(seconds: 2),
+    baseColor: ColorResource.lightGrayColor50,
+    highlightColor: ColorResource.lightShadowColor50,
+    enabled: true,
+    child: SizedBox(
+      height: 150,
+      width: double.infinity,
+      child: ListView.builder(
+        itemCount: 3,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (BuildContext context, int index) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                margin: const EdgeInsets.only(left: 10, right: 10),
+                height: 120,
+                width: 120,
+                decoration: customDecoration(radius: 10),
+              ),
+
+            ],
+          );
+        },
+      ),
+    ),
+  );
+}
 
 Widget recommendShimmerView(BuildContext context) {
   return Shimmer.fromColors(

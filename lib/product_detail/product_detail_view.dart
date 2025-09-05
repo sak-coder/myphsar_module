@@ -185,9 +185,10 @@ class _ProductDetailViewState extends State<ProductDetailView> with SingleTicker
                                         child: ExtendedImage.network(
                                           '${Get.find<ConfigController>().configModel.baseUrls!.baseProductImageUrl}/${widget._product.images![index]}',
                                           width: MediaQuery.of(context).size.width,
-                                          fit: BoxFit.fitHeight,
+                                          fit: BoxFit.cover,
                                           cache: false,
-                                          enableMemoryCache: false,
+                                        enableLoadState: true,
+                                        //  enableMemoryCache: false,
                                           loadStateChanged: (ExtendedImageState state) {
                                             switch (state.extendedImageLoadState) {
                                               case LoadState.failed:

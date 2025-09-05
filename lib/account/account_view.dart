@@ -47,7 +47,7 @@ class _AccountViewState extends State<AccountView> {
   // ItemSetting account1 =
   // ItemSetting(name: "FCM Token", image: "assets/images/partner_ic.png", widget: const FCMView());
   ItemSetting account =
-      ItemSetting(name: "account".tr, image: "assets/images/account_ic.png", widget: const UserProfileView());
+      ItemSetting(name: "personal_detail".tr, image: "assets/images/personal_info_ic.png", widget: const UserProfileView());
   ItemSetting address =
       ItemSetting(name: "address".tr, image: "assets/images/location_ic.png", widget: const AddressView());
 
@@ -77,7 +77,7 @@ class _AccountViewState extends State<AccountView> {
     // ItemSetting account1 =
     // ItemSetting(name: "account".tr, image: "assets/images/partner_ic.png", widget: const FCMView());
     ItemSetting account =
-        ItemSetting(name: "account".tr, image: "assets/images/account_ic.png", widget: const UserProfileView());
+        ItemSetting(name: "account".tr, image: "assets/images/personal_info_ic.png", widget: const UserProfileView());
     ItemSetting address =
         ItemSetting(name: "address".tr, image: "assets/images/location_ic.png", widget: const AddressView());
 

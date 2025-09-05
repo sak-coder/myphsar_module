@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:myphsar/base_controller.dart';
 import 'package:myphsar/base_provider.dart';
 import 'package:myphsar/configure/config_model.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 class ConfigController extends BaseController {
   final BaseProvider baseProvider;
@@ -53,8 +52,4 @@ class ConfigController extends BaseController {
     });
   }
 
-  void addVersion(PackageInfo packageInfo) {
-    appVersion.value = packageInfo.version;
-    versionCode.value = int.parse(packageInfo.buildNumber.toString().replaceAll(".", ""));
-  }
 }

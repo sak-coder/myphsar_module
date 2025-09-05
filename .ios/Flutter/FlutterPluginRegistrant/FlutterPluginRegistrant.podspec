@@ -19,18 +19,10 @@ Depends on all your plugins, and provides a function to register them.
   s.static_framework    = true
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   s.dependency 'Flutter'
-  s.dependency 'app_tracking_transparency'
   s.dependency 'camera_avfoundation'
-  s.dependency 'connectivity_plus'
   s.dependency 'external_app_launcher'
-  s.dependency 'flutter_compass'
   s.dependency 'flutter_inappwebview_ios'
-  s.dependency 'geocoding_ios'
-  s.dependency 'geolocator_apple'
-  s.dependency 'google_maps_flutter_ios'
   s.dependency 'image_picker_ios'
-  s.dependency 'location'
-  s.dependency 'package_info_plus'
   s.dependency 'path_provider_foundation'
   s.dependency 'permission_handler_apple'
   s.dependency 'share_plus'

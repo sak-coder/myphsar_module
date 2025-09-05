@@ -30,6 +30,9 @@ android {
         }
     }
 
+
+
+
 }
 buildDir = new File(rootProject.projectDir, "../build/host")
 dependencies {

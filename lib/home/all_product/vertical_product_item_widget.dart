@@ -43,7 +43,7 @@ class _VerticalProductItemWidgetState extends State<VerticalProductItemWidget> {
         width: widget.width,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(0),
           boxShadow: const [
             BoxShadow(color: Colors.black12, blurRadius: 0),
           ],
@@ -52,15 +52,11 @@ class _VerticalProductItemWidgetState extends State<VerticalProductItemWidget> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             //   Product image
-            SizedBox(
-              height: 165,
-              child: Stack(children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.network(
+            Stack(children: [
+               Image.network(
                     width: MediaQuery.of(context).size.width,
                     height: 180,
-                    fit: BoxFit.contain,
+                    fit: BoxFit.fill,
                     cacheHeight: 300,
                     '${Get.find<ConfigController>().configModel.baseUrls?.baseProductThumbnailUrl}/${widget.product.thumbnail!}',
                     errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
@@ -79,27 +75,7 @@ class _VerticalProductItemWidgetState extends State<VerticalProductItemWidget> {
                       );
                     },
                   ),
-                  // child: FadeInImage.assetNetwork(
-                  // 	placeholder: "assets/images/placeholder_img.png",
-                  // 	placeholderCacheHeight: 179,
-                  // 	placeholderFit: BoxFit.fitHeight,
-                  // 	placeholderScale: 50,
-                  // 	fadeInDuration: Duration(seconds: 2),
-                  // 	fit: BoxFit.fitHeight,s
-                  // 	imageCacheHeight: 250,
-                  // 	imageScale: 50,
-                  // 	image:
-                  // 	'${'${Get.find<ConfigController>().configModel.baseUrls?.baseProductThumbnailUrl}/' + widget.product.thumbnail!}',
-                  // 	width: MediaQuery.of(context).size.width,
-                  // 	height: 179,
-                  // 	imageErrorBuilder: (c, o, s) => Image.asset(
-                  // 		"assets/images/placeholder_img.png",
-                  // 		height: 179,
-                  // 		scale: 50,
-                  // 		fit: BoxFit.fitHeight,
-                  // 	),
-                  // )
-                ),
+
                 Align(
                   alignment: Alignment.topLeft,
                   child: Padding(
@@ -119,7 +95,7 @@ class _VerticalProductItemWidgetState extends State<VerticalProductItemWidget> {
                   ),
                 ),
               ]),
-            ),
+
             widget.product.videoUrl != null
                 ? Container(
                     margin: const EdgeInsets.all(5),

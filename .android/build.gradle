@@ -9,6 +9,7 @@ allprojects {
 
 apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
+apply plugin: "maven-publish"
 
 android {
     namespace = "com.myphsar.myphsar_module"
@@ -18,3 +19,30 @@ android {
         targetSdk = 35
     }
 }
+// Add this at the end of the file
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.sak-coder'
+                artifactId = 'myphsar_module'
+                version = '1.0.0'
+            }
+        }
+    }
+}
+// Add this task to build the AAR
+task buildAar(type: Exec) {
+    workingDir '../'
+    commandLine 'flutter', 'build', 'aar', '--no-profile', '--no-release'
+}
+
+// Optional: Clean task
+task cleanAar(type: Exec) {
+    workingDir '../'
+    commandLine 'flutter', 'clean'
+}
+
+// Make clean depend on cleanAar
+clean.dependsOn(cleanAar)

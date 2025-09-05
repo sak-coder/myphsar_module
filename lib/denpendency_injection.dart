@@ -40,7 +40,7 @@ import 'home/seller/seller_controller.dart';
 import 'home/top_seller/top_seller_controller.dart';
 import 'installment_product/installment_product_view_controller.dart';
 import 'notification/notification_controller.dart';
-import 'utils/connectivity_controller.dart';
+
 
 class DependencyBinding implements Bindings {
   final String baseUrl;
@@ -63,7 +63,6 @@ class DependencyBinding implements Bindings {
     getInstance.lazyPut(() => ShopProfileController(getInstance()), permanent: true);
     getInstance.lazyPut(() => CategoryController(getInstance()), fenix: true);
     getInstance.lazyPut(() => CategoryDetailController(getInstance()), fenix: true);
-    getInstance.lazyPut(() => ConnectivityController(), permanent: true);
     getInstance.lazyPut(() => RecommendController(getInstance()), fenix: true);
     getInstance.lazyPut(() => TopSellerController(getInstance()), fenix: true);
     getInstance.lazyPut(() => DailyDealController(getInstance()), fenix: true);
