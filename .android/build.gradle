@@ -27,7 +27,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.sak-coder'
                 artifactId = 'myphsar_module'
-                version = '1.0.0'
+                version = '1.0.2'
             }
         }
     }
@@ -35,7 +35,7 @@ afterEvaluate {
 // Add this task to build the AAR
 task buildAar(type: Exec) {
     workingDir '../'
-    commandLine 'flutter', 'build', 'aar', '--no-profile', '--no-release'
+    commandLine 'flutter', 'build', 'aar', '--no-profile'
 }
 
 // Optional: Clean task
