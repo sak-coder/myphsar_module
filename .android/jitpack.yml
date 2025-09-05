@@ -1,8 +1,7 @@
 jdk:
   - openjdk11
 before_install:
-  - sdk install flutter
-  - sdk use flutter 3.13.0 # Use your Flutter version
-  - flutter pub get
+  - chmod +x jitpack-build.sh
+  - ./jitpack-build.sh
 install:
-  - ./gradlew buildAar
+  - cd android && ./gradlew assemble

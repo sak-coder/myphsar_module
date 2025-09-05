@@ -1,19 +1,23 @@
 #!/bin/bash
 set -e
 
-# Install Flutter
+echo "Installing Flutter..."
 git clone https://github.com/flutter/flutter.git --depth 1 -b stable
 export PATH="$PWD/flutter/bin:$PATH"
+export FLUTTER_ROOT="$PWD/flutter"
 
-# Verify Flutter installation
-flutter doctor -v
+echo "Checking Flutter version..."
+flutter --version
 
-# Get dependencies
+echo "Getting dependencies..."
 flutter pub get
 
-# Build AAR
+echo "Building AAR..."
 flutter build aar --no-profile --no-release
 
-# Copy built AAR to appropriate location for JitPack
-mkdir -p build/outputs/aar
-cp android/build/outputs/aar/*.aar build/outputs/aar/
+echo "Preparing for JitPack..."
+# Copy the built AARs to a location JitPack expects
+mkdir -p android/build/outputs/aar
+cp -r build/host/outputs/repo/* android/build/outputs/aar/
+
+echo "Build completed successfully!"
