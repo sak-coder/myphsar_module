@@ -4,4 +4,4 @@ before_install:
   - chmod +x jitpack-build.sh
   - ./jitpack-build.sh
 install:
-  - cd android && ./gradlew assemble
+  - cd android && ./gradlew assemble --no-daemon
